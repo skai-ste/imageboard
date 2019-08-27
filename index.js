@@ -28,34 +28,6 @@ const uploader = multer({
 
 app.use(express.static("public"));
 
-// app.get("/planets", (req, res) => {
-//     let planets = [
-//         {
-//             name: "Pluto",
-//             color: "grey/yellow"
-//         },
-//         {
-//             name: "Venus",
-//             color: "orange"
-//         },
-//         {
-//             name: "Mars",
-//             color: "red"
-//         }
-//     ];
-//     console.log("i hit the planets route");
-//     res.json(planets);
-// });
-
-// {
-//     "images" : [
-//         {
-//             "name" : "bla",
-//             "url" : "example.com"
-//         }
-//     ]
-// }
-
 app.get("/images", (req, res) => {
     getImages()
         .then(result => {
