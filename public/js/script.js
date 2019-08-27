@@ -18,7 +18,8 @@ console.log("sanity check!!!");
                 console.log("this.images in then", this.images);
                 console.log("me.images in then", me.images);
                 console.log("This is my response!", response);
-                me.images = response.data.images;
+                me.images = response.data;
+                console.log("response.data: ", response.data);
             });
         },
         methods: {
