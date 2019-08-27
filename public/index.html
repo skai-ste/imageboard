@@ -14,12 +14,11 @@
             <input @change='handleChange' name='file' type='file' accept='image/*'>
             <button @click='handleClick'>submit</button>
         </form>
-    <div id="image-cards"
+
         <div v-for="image in images">
-            <img :src="image.url" id="images"></img>
+            <img :src="image.url"></img>
             <h4>{{image.title}}</h4>
         </div>
-    </div>
 
     </div>
     <script src="/js/vue.js"></script>

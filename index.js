@@ -34,9 +34,7 @@ app.get("/images", (req, res) => {
     getImages()
         .then(result => {
             console.log("Result is: ", result);
-            res.json({
-                images: result
-            });
+            res.json(result);
         })
         .catch(err => {
             console.log("ERR", err);
@@ -50,15 +48,15 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     const url = config.s3url + filename; //if you got here you have url of img and all other information
     const { title, username, description } = req.body; // you gotta put this information in database, you will do data base query INSERT : title, username, description, url. Send that back into response
 
-    if (req.file) {
-        res.json({
-            success: true
-        });
-    } else {
-        res.json({
-            success: false
-        });
-    }
+    // if (req.file) {
+    //     res.json({
+    //         success: true
+    //     });
+    // } else {
+    //     res.json({
+    //         success: false
+    //     });
+    // }
 });
 // after amazon is complete you should put your images. Because if amazon fales you have no image!
 //you should UNSHIFT image not push it. It's then infront of your images array

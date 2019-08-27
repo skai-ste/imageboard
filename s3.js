@@ -24,9 +24,9 @@ exports.upload = function(req, res, next) {
             Bucket: "spicedling",
             ACL: "public-read", //everyone who has url of the img can read it
             Key: filename,
-            Body: fs.createReadStream(path),
+            Body: fs.createReadStream(path), // The path is available as a property of req.file
             ContentType: mimetype,
-            ContentLength: size
+            ContentLength: size // You can use the size property of req.file for this
         })
         .promise();
 
