@@ -17,8 +17,8 @@ console.log("sanity check!!!");
             axios.get("/images").then(function(response) {
                 console.log("this.images in then", this.images);
                 console.log("me.images in then", me.images);
-                console.log("This is my response!", response.data);
-                me.images = response.images;
+                console.log("This is my response!", response);
+                me.images = response.data.images;
             });
         },
         methods: {
