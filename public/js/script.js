@@ -60,9 +60,3 @@ console.log("sanity check!!!");
         // }
     });
 })();
-
-//
-// axios.post('./upload', formData).then(funciotn(resp) {
-//     var img = resp.data;
-// });
-// I do in my upload handler
