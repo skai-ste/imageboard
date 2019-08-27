@@ -33,10 +33,11 @@ console.log("sanity check!!!");
                 formData.append("username", this.username);
                 formData.append("file", this.file);
                 //you have to use method and loop through it to see what is inside
-
+                var me = this;
                 axios
                     .post("/upload", formData)
                     .then(function(resp) {
+                        me.images.unshift(resp.data);
                         console.log("resp from post /upload: ", resp);
                     })
                     .catch(function(err) {
@@ -59,3 +60,9 @@ console.log("sanity check!!!");
         // }
     });
 })();
+
+//
+// axios.post('./upload', formData).then(funciotn(resp) {
+//     var img = resp.data;
+// });
+// I do in my upload handler
