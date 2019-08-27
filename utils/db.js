@@ -10,7 +10,9 @@ if (process.env.DATABASE_URL) {
 
 exports.getImages = function() {
     return db
-        .query(`SELECT url, username, title, description FROM images`)
+        .query(
+            `SELECT url, username, title, description FROM images ORDER BY created_at DESC`
+        )
         .then(({ rows }) => {
             return rows;
         });
