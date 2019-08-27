@@ -15,6 +15,7 @@ const s3 = new aws.S3({
 
 exports.upload = function(req, res, next) {
     if (!req.file) {
+        console.log("STATUS 500");
         return res.send(500);
     }
     const { filename, mimetype, size, path } = req.file;
