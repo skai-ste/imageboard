@@ -11,3 +11,37 @@ body {
     grid-column-gap: 10px;
     grid-row-gap: 15px;
 }
+.title {
+    text-align: center;
+    font-size: 150px;
+    margin: 0;
+}
+
+.latest {
+    text-align: center;
+    font-size: 16px;
+    font-style: italic;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+.card {
+    max-width: 324px;
+    padding: 10px;
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    font-family: "Open Sans";
+    margin-bottom: 30px;
+}
+
+.images-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-around;
+}
