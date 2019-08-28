@@ -4,21 +4,23 @@ console.log("sanity check!!!");
     Vue.component("image-modal", {
         // data, methods, mounted
         template: "#image-modal-template",
-        props: ["planet"],
+        props: ["id"],
         // you can put more props after comma
         // and don't forget if props are writen with camelCase
         // then it must be kebab-case on html
         data: function() {
             return {
-                header: "sassafriends!!!!!"
+                header: "sasssafriends",
+                imgData: ""
             };
         },
         mounted: function() {
             console.log("this in component: ", this);
+            console.log("THIS.ID : ", this.id);
             // mounted works the same as mounted in Vue instance
             // only difference is this function runs when the component
             // mounts!
-            console.log("mounted is running!"); ////it's not running ????!! /////
+            console.log("mounted is running!");
         },
         // methods only run when a user does something (click, mousover, etc.)
         methods: {
@@ -28,14 +30,14 @@ console.log("sanity check!!!");
             },
 
             myClick: function() {
-                console.log("myClick running!"); // it's NOT RUNNING
+                console.log("myClick running!");
             }
         }
     });
     new Vue({
         el: "#main",
         data: {
-            planet: "",
+            imageId: "",
             showModal: false,
 
             images: [],
@@ -45,13 +47,6 @@ console.log("sanity check!!!");
             username: "",
             url: "",
             file: null,
-            // form: {
-            //     title: "",
-            //     description: "",
-            //     username: "",
-            //     url: "",
-            //     file: null
-            // }
             planets: [
                 {
                     id: 1,
@@ -85,14 +80,15 @@ console.log("sanity check!!!");
         methods: {
             closeModalOnParent: function() {
                 console.log("closeModalOnParent running");
+                this.showModal = false;
                 //here you can safely close the modal
             },
-            showModalMethod: function(planet) {
+            showModalMethod: function(id) {
                 // this is the Vue instance
                 console.log("showModalMethod running!"); //after you click on imgae it whourld print that you clicked clicking
                 this.showModal = true;
                 // console.log("planet: ", planet);
-                this.planet = planet;
+                this.imageId = id;
             },
             handleClick: function(e) {
                 e.preventDefault();
