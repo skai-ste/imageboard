@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { getImages, addImageData } = require("./utils/db");
+const { getImages, addImageData, getImageData } = require("./utils/db");
 const s3 = require("./s3");
 const config = require("./config");
 
@@ -67,6 +67,17 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     //     });
     // }
 });
+
+app.get("/currentImage/:id", (req, res) => {
+    let id = req.params.id;
+    console.log("req.params.id: ", id);
+
+    getImageData(req.params.id).then(result => {
+        console.log("result: ", result);
+        res.json(result);
+    });
+});
+
 // after amazon is complete you should put your images. Because if amazon fales you have no image!
 //you should UNSHIFT image not push it. It's then infront of your images array
 

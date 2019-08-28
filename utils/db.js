@@ -28,3 +28,14 @@ exports.addImageData = function(url, username, title, description) {
             return rows[0];
         });
 };
+
+exports.getImageData = function(id) {
+    return db
+        .query(
+            `SELECT id, url, username, title, description, created_at FROM images WHERE id = $1`,
+            [id]
+        )
+        .then(({ rows }) => {
+            return rows[0];
+        });
+};
