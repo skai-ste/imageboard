@@ -1,4 +1,4 @@
-console.log("sanity check!!!");
+// console.log("sanity check!!!");
 
 (function() {
     Vue.component("image-modal", {
@@ -17,10 +17,16 @@ console.log("sanity check!!!");
         mounted: function() {
             console.log("this in component: ", this);
             console.log("THIS.ID : ", this.id);
+            var self = this;
+            axios.get("/currentImage/" + self.id).then(function(response) {
+                self.imgData = response.data;
+                console.log("response.data: ", response.data);
+                console.log("data.imgae.data: ");
+            });
             // mounted works the same as mounted in Vue instance
             // only difference is this function runs when the component
             // mounts!
-            console.log("mounted is running!");
+            // console.log("mounted is running!");
         },
         // methods only run when a user does something (click, mousover, etc.)
         methods: {
@@ -66,14 +72,13 @@ console.log("sanity check!!!");
             ]
         },
         mounted: function() {
-            console.log("my vue has mounted!");
-            // var self = this;
-            var me = this;
+            // console.log("my vue has mounted!");
+            var self = this;
             axios.get("/images").then(function(response) {
-                console.log("this.images in then", this.images);
-                console.log("me.images in then", me.images);
-                console.log("This is my response!", response);
-                me.images = response.data;
+                // console.log("this.images in then", this.images);
+                // console.log("me.images in then", me.images);
+                // console.log("This is my response!", response);
+                self.images = response.data;
                 console.log("response.data: ", response.data);
             });
         },
