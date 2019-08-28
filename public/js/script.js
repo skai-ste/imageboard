@@ -1,18 +1,78 @@
 console.log("sanity check!!!");
 
 (function() {
+    Vue.component("image-modal", {
+        // data, methods, mounted
+        template: "#image-modal-template",
+        props: ["planet"],
+        // you can put more props after comma
+        // and don't forget if props are writen with camelCase
+        // then it must be kebab-case on html
+        data: function() {
+            return {
+                header: "sassafriends!!!!!"
+            };
+        },
+        mounted: function() {
+            console.log("this in component: ", this);
+            // mounted works the same as mounted in Vue instance
+            // only difference is this function runs when the component
+            // mounts!
+            console.log("mounted is running!"); ////it's not running ????!! /////
+        },
+        // methods only run when a user does something (click, mousover, etc.)
+        methods: {
+            closeModal: function() {
+                // console.log("closeModal running");
+                this.$emit("close");
+            },
+
+            myClick: function() {
+                console.log("myClick running!"); // it's NOT RUNNING
+            }
+        }
+    });
     new Vue({
         el: "#main",
         data: {
+            planet: "",
+            showModal: false,
+
             images: [],
             seen: true,
             title: "",
             description: "",
             username: "",
-            file: null
+            url: "",
+            file: null,
+            // form: {
+            //     title: "",
+            //     description: "",
+            //     username: "",
+            //     url: "",
+            //     file: null
+            // }
+            planets: [
+                {
+                    id: 1,
+                    name: "pluto",
+                    funFact: "not a planet"
+                },
+                {
+                    id: 2,
+                    name: "earth",
+                    funFact: "there are human beings living here"
+                },
+                {
+                    id: 3,
+                    name: "mars",
+                    funFact: "is red & has rowers on it"
+                }
+            ]
         },
         mounted: function() {
             console.log("my vue has mounted!");
+            // var self = this;
             var me = this;
             axios.get("/images").then(function(response) {
                 console.log("this.images in then", this.images);
@@ -23,6 +83,17 @@ console.log("sanity check!!!");
             });
         },
         methods: {
+            closeModalOnParent: function() {
+                console.log("closeModalOnParent running");
+                //here you can safely close the modal
+            },
+            showModalMethod: function(planet) {
+                // this is the Vue instance
+                console.log("showModalMethod running!"); //after you click on imgae it whourld print that you clicked clicking
+                this.showModal = true;
+                // console.log("planet: ", planet);
+                this.planet = planet;
+            },
             handleClick: function(e) {
                 e.preventDefault();
                 console.log("this: ", this);

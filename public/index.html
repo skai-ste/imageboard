@@ -7,6 +7,23 @@
 <body>
     <h1>Image Board!</h1>
     <div id="main">
+
+        <div v-for='planet in planets'>
+            <h1 @click='showModalMethod(planet.name)'>{{ planet.name }}</h1>
+        </div>
+
+        <!-- ////render modal/// -->
+        <image-modal
+            v-if='showModal'
+            :planet='planet'
+            @close='closeModalOnParent'
+        ></image-modal>
+        <!-- if show modal it's true show up, if not - not -->
+        <!-- this planet on right is the user clicked on it's mars, earth or whatever you wrote. On right side must be a property of the Vue instance's data -->
+        <!-- the left refering to the prop - it's planet property we created by writing props -->
+
+        <!-- if your prop ir written in cameCase (so 'planetName') then
+        the left side needs to be written in kebabcase: planet-name -->
         <form>
             <input v-model='title' name='title' placeholder="title" type='text'>
             <input v-model='description' name='description' placeholder="description" type='text'>
@@ -15,13 +32,34 @@
             <button @click='handleClick'>submit</button>
         </form>
     <div class="image-cards">
-        <div id="images" v-for="image in images">
-            <img :src="image.url"></img>
+        <div
+        class="images"
+        v-if ="images.length"
+        v-for="image in images">
+            <img
+            class="image"
+            :src="image.url"
+            :alt="image.title"
+            @click="showModalMethod"
+            ></img>
             <h4>{{image.title}}</h4>
         </div>
     </div>
 
+
+<!-- this div closes main -->
     </div>
+
+    <!-- our script tag must be outside of #main!!! -->
+    <script id='image-modal-template' type='text/x-template'>
+        <!-- all of the HTML for our component will be put in this div -->
+        <div>
+            <p @click='closeModal'>x</p>
+            <h1>my image modal template!!!!!!!</h1>
+            <h1 @click='myClick'>{{header}}</h1>
+        </div>
+    </script>
+
     <script src="/js/vue.js"></script>
     <script src="/js/axios.min.js"></script>
     <script src="/js/script.js"></script>
