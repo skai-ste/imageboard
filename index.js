@@ -69,11 +69,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/currentImage/:id", (req, res) => {
-    let id = req.params.id;
-    console.log("req.params.id: ", id);
-
+    console.log("req.params.id: ", req.params.id);
     getImageData(req.params.id).then(result => {
-        console.log("result: ", result);
+        console.log("RESULT: ", result);
         res.json(result);
     });
 });

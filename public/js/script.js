@@ -20,8 +20,7 @@
             var self = this;
             axios.get("/currentImage/" + self.id).then(function(response) {
                 self.imgData = response.data;
-                console.log("response.data: ", response.data);
-                console.log("data.imgae.data: ");
+                console.log("RESPONSE.data: ", response.data);
             });
             // mounted works the same as mounted in Vue instance
             // only difference is this function runs when the component
@@ -52,24 +51,24 @@
             description: "",
             username: "",
             url: "",
-            file: null,
-            planets: [
-                {
-                    id: 1,
-                    name: "pluto",
-                    funFact: "not a planet"
-                },
-                {
-                    id: 2,
-                    name: "earth",
-                    funFact: "there are human beings living here"
-                },
-                {
-                    id: 3,
-                    name: "mars",
-                    funFact: "is red & has rowers on it"
-                }
-            ]
+            file: null
+            // planets: [
+            //     {
+            //         id: 1,
+            //         name: "pluto",
+            //         funFact: "not a planet"
+            //     },
+            //     {
+            //         id: 2,
+            //         name: "earth",
+            //         funFact: "there are human beings living here"
+            //     },
+            //     {
+            //         id: 3,
+            //         name: "mars",
+            //         funFact: "is red & has rowers on it"
+            //     }
+            // ]
         },
         mounted: function() {
             // console.log("my vue has mounted!");
