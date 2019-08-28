@@ -1,47 +1,45 @@
 body {
     background-color: whitesmoke;
 }
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 360px);
+}
 .highlight {
     font-weight: bold;
     color: lightgrey;
 }
-.image-cards {
-    grid-template-columns: 100px 50px 100px;
-    grid-template-rows: 80px auto 80px;
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-}
-.title {
+.inputs {
     text-align: center;
-    font-size: 150px;
-    margin: 0;
+    /* align-self: center; */
+    margin: 40px;
 }
-
-.latest {
+#title {
     text-align: center;
-    font-size: 16px;
-    font-style: italic;
+    font-size: 50px;
+    margin: 20px;
 }
-
-.image {
+#image {
     width: 300px;
-    height: 300px;
+    height: 200px;
     object-fit: cover;
-    border: 1px solid black;
+    border: 1px solid grey;
 }
-
-.card {
-    max-width: 324px;
-    padding: 10px;
-    border: 1px solid black;
-    color: black;
-    background-color: white;
-    font-family: "Open Sans";
-    margin-bottom: 30px;
-}
-
-.images-container {
+.image-card {
     display: grid;
-    grid-template-columns: auto auto auto;
-    justify-content: space-around;
+    max-width: 300px;
+    padding: 20px;
+    background-color: whitesmoke;
+    color: grey;
+    border: 1px solid grey;
+    margin-bottom: 20px;
+}
+#modal-appear {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 33333;
 }
