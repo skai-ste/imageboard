@@ -51,16 +51,19 @@
         <div id="modal-appear">
             <p class="modal-x" @click='closeModal'>x</p>
             <div id="modal-container">
-            <p>{{imgData.title}}</p>
+                <p>{{imgData.title}}</p>
 
-            <img id="img" v-bind:src="imgData.url"></img>
-            <p>{{imgData.description}}</p>
-            <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
-            <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
-            <button id="comment-click" @click='addComment'>comment</button>
+                <img id="img" v-bind:src="imgData.url"></img>
+                <p>{{imgData.description}}</p>
+                <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
+                <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
+                <button id="comment-click" @click='addComment'>comment</button>
+                <div v-for="comment in comments">
+                    <p>{{comment.comment}}</p>
+                </div>
             </div>
-            <div>
-            </div>
+
+
             <!-- <h1>My templateeeee</h1> -->
             <!-- <h1 @click='myClick'>{{header}}</h1> -->
             <!-- <h1 @click='myClick'></h1> -->

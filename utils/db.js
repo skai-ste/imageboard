@@ -43,11 +43,11 @@ exports.getImageData = function(id) {
 exports.addCommentsData = function(comment, username, user_id) {
     return db
         .query(
-            `INSERT INTO comments (comment, username, user_id) VALUES ($1, $2, $3)`,
+            `INSERT INTO comments (comment, username, user_id) VALUES ($1, $2, $3) RETURNING *`,
             [comment, username, user_id]
         )
         .then(({ rows }) => {
-            return rows;
+            return rows[0];
         });
 };
 
