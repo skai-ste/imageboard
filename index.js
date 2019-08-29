@@ -1,6 +1,11 @@
 const express = require("express");
 const app = express();
-const { getImages, addImageData, getImageData } = require("./utils/db");
+const {
+    getImages,
+    addImageData,
+    getImageData,
+    addCommentsData
+} = require("./utils/db");
 const s3 = require("./s3");
 const config = require("./config");
 
@@ -70,10 +75,25 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 app.get("/currentImage/:id", (req, res) => {
     console.log("req.params.id: ", req.params.id);
-    getImageData(req.params.id).then(result => {
-        console.log("RESULT: ", result);
-        res.json(result);
-    });
+    getImageData(req.params.id)
+        .then(result => {
+            console.log("RESULT: ", result);
+            res.json(result);
+        })
+        .catch(err => {
+            console.log("ERROR :", err);
+        });
+});
+
+app.post("/currentImage/:id", (req, res) => {
+    addCommentsData(req.session.id, req.body.username, req.body.comment)
+        .then(id => {
+            req.session.id = id;
+            res.json(id);
+        })
+        .catch(err => {
+            console.log("ERROR :", err);
+        });
 });
 
 // after amazon is complete you should put your images. Because if amazon fales you have no image!
