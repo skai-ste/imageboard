@@ -18,11 +18,13 @@
             };
         },
         mounted: function() {
-            console.log("this in component: ", this);
             console.log("THIS.ID : ", this.id);
             var self = this;
             axios.get("/currentImage/" + self.id).then(function(response) {
                 self.imgData = response.data;
+            });
+            axios.get("/comments/" + self.id).then(function(response) {
+                self.comments = response.data;
                 // console.log("RESPONSE.data: ", response.data);
             });
             // mounted works the same as mounted in Vue instance

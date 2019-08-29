@@ -51,6 +51,17 @@ exports.addCommentsData = function(comment, username, user_id) {
         });
 };
 
+exports.getCommentsData = function(user_id) {
+    return db
+        .query(
+            `SELECT comment, username, created_at FROM comments WHERE user_id = $1`,
+            [user_id]
+        )
+        .then(({ rows }) => {
+            return rows;
+        });
+};
+
 // SELECT * FROM images
 // WHERE id < $1
 // ORDER BY id DESC
