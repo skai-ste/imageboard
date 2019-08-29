@@ -22,7 +22,7 @@
             var self = this;
             axios.get("/currentImage/" + self.id).then(function(response) {
                 self.imgData = response.data;
-                console.log("RESPONSE.data: ", response.data);
+                // console.log("RESPONSE.data: ", response.data);
             });
             // mounted works the same as mounted in Vue instance
             // only difference is this function runs when the component
@@ -41,7 +41,15 @@
             },
             addComment: function() {
                 console.log("I AM ADDING COMMENT!");
-                // I makeing post requist here
+                var self = this;
+                console.log("THIS", this); //that our input are talking to each other
+                axios
+                    .post("/comments/" + self.id, this.form)
+                    .then(function(response) {
+                        console.log("comments.data:", response.data);
+                        self.id.unshift(response.data);
+                    });
+                // I making post request here
                 // you gonna send information along with this
             }
         }
@@ -50,6 +58,8 @@
         el: "#main",
         data: {
             imageId: "",
+            // imageId: location.hash.slice(1) OR currentImage: location.hash.slice(1)
+
             showModal: false,
 
             images: [],
@@ -89,11 +99,11 @@
                 formData.append("username", this.username);
                 formData.append("file", this.file);
                 //you have to use method and loop through it to see what is inside
-                var me = this;
+                var self = this;
                 axios
                     .post("/upload", formData)
                     .then(function(resp) {
-                        me.images.unshift(resp.data);
+                        self.images.unshift(resp.data);
                         console.log("resp from post /upload: ", resp);
                     })
                     .catch(function(err) {
@@ -107,3 +117,7 @@
         }
     });
 })();
+
+//console log:
+// location.hash.slice(1)
+//return image // IDEA:

@@ -14,6 +14,8 @@ const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
 
+app.use(express.json());
+
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
         callback(null, __dirname + "/uploads");
@@ -85,8 +87,9 @@ app.get("/currentImage/:id", (req, res) => {
         });
 });
 
-app.post("/currentImage/:id", (req, res) => {
-    addCommentsData(req.session.id, req.body.username, req.body.comment)
+app.post("/comments/:id", (req, res) => {
+    console.log("req.body", req.body);
+    addCommentsData(req.params.id, req.body.username, req.body.comment)
         .then(id => {
             req.session.id = id;
             res.json(id);
