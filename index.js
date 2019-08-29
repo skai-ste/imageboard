@@ -4,7 +4,8 @@ const {
     getImages,
     addImageData,
     getImageData,
-    addCommentsData
+    addCommentsData,
+    getCommentsData
 } = require("./utils/db");
 const s3 = require("./s3");
 const config = require("./config");
@@ -84,6 +85,17 @@ app.post("/comments/:id", (req, res) => {
         .then(comment => {
             console.log("COMMENT:", comment);
             res.json(comment);
+        })
+        .catch(err => {
+            console.log("ERROR :", err);
+        });
+});
+
+app.get("/comments/:id", (req, res) => {
+    getCommentsData(req.params.id)
+        .then(comments => {
+            console.log("COMMENTSSS:", comments);
+            res.json(comments);
         })
         .catch(err => {
             console.log("ERROR :", err);
