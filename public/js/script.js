@@ -13,7 +13,8 @@
                 form: {
                     username: "",
                     comment: ""
-                }
+                },
+                comments: []
             };
         },
         mounted: function() {
@@ -46,8 +47,8 @@
                 axios
                     .post("/comments/" + self.id, this.form)
                     .then(function(response) {
-                        console.log("comments.data:", response);
-                        self.id.unshift(response.data);
+                        console.log("comments.data:", response.data);
+                        self.comments.unshift(response.data);
                     });
                 // I making post request here
                 // you gonna send information along with this

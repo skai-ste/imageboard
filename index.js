@@ -64,15 +64,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
         .catch(err => {
             console.log("ERROR :", err);
         });
-    // if (req.file) {
-    //     res.json({
-    //         success: true
-    //     });
-    // } else {
-    //     res.json({
-    //         success: false
-    //     });
-    // }
 });
 
 app.get("/currentImage/:id", (req, res) => {
@@ -88,11 +79,10 @@ app.get("/currentImage/:id", (req, res) => {
 });
 
 app.post("/comments/:id", (req, res) => {
-    console.log("req.body", req.body);
+    console.log("req.body", req.body, "params:", req.params);
     addCommentsData(req.body.comment, req.body.username, req.params.id)
         .then(comment => {
-            // console.log("COMMENT:", comment);
-            req.params.id = comment;
+            console.log("COMMENT:", comment);
             res.json(comment);
         })
         .catch(err => {
