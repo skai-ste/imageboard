@@ -39,3 +39,26 @@ exports.getImageData = function(id) {
             return rows[0];
         });
 };
+
+// SELECT * FROM images
+// WHERE id < $1
+// ORDER BY id DESC
+// LIMIT 20
+//
+// // infinite scrool is better choice as with more button you need to fugure out how many pictures and ect
+//
+// SELECT id AS "lowestId"
+// FROM images
+// ORDER BY id ASC
+// LIMIT 1
+// // you can do seperate query or this bellow
+// // SELECT images.id, images.title (
+// SELECT *, (
+//     SELECT id
+//     FROM images
+//     ORDER BY id ASC
+//     LIMIT 1
+// ) as "lowestId" FROM images
+// WHERE id < $1
+// ORDER BY id DESC
+// LIMIT 20

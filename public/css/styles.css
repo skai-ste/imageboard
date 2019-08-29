@@ -47,6 +47,8 @@ body {
     /* text-align: center; */
     /* align-self: center; */
     justify-content: center;
+    align-self: center;
+    color: whitesmoke;
 }
 .modal-x {
     font-family: verdana;
@@ -57,10 +59,13 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
+#modal-container {
+    width: 40%;
+}
 #img {
-    width: 50%;
+    width: 100%;
     display: flex;
-    /* flex-wrap: wrap; */
-    /* text-align: center; */
+    /* flex-wrap: wrap;
+    text-align: center; */
     align-self: center;
 }

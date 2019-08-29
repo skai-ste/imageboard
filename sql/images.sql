@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS images;
 
 CREATE TABLE images(
     id SERIAL PRIMARY KEY,
-    url VARCHAR(300) NOT NULL,
-    username VARCHAR(255) NOT NULL,
-    title VARCHAR(255) NOT NULL,
+    url VARCHAR(299) NOT NULL,
+    username VARCHAR(199) NOT NULL,
+    title VARCHAR(199) NOT NULL,
     description TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -28,4 +28,13 @@ INSERT INTO images (url, username, title, description) VALUES (
     'discoduck',
     'Hello Berlin',
     'This is going to be worth a lot of money one day.'
+);
+
+DROP TABLE IF EXISTS comments;
+
+CREATE TABLE comments(
+    id SERIAL PRIMARY KEY,
+    comment VARCHAR(499) NOT NULL,
+    username VARCHAR(199) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
