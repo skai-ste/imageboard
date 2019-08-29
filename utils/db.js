@@ -73,3 +73,5 @@ exports.addCommentsData = function(id, comment, username) {
 // WHERE id < $1
 // ORDER BY id DESC
 // LIMIT 20
+
+// IF THERE IS NEXT IMG SHOW LEFT ARROW / EIGHT ARROW
