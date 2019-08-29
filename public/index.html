@@ -55,11 +55,13 @@
         <!-- all of the HTML for our component will be put in this div -->
         <div id="modal-appear">
             <p class="modal-x" @click='closeModal'>x</p>
-            <h1>My templateeeee</h1>
-            <h1>{{imgData.title}}</h1>
+            <!-- <h1>My templateeeee</h1> -->
             <img id="img" v-bind:src="imgData.url"></img>
+            <!-- <p>{{imgData.title}}</p> -->
             <!-- <p>{{imgData.description}}</p> -->
-            <h1 @click='myClick'>{{header}}</h1>
+            <!-- <h1 @click='myClick'>{{header}}</h1> -->
+            <h1 @click='myClick'></h1>
+
         </div>
     </script>
 

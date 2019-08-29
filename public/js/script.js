@@ -10,7 +10,7 @@
         // then it must be kebab-case on html
         data: function() {
             return {
-                header: "sasssafriends",
+                // header: "sasssafriends",
                 imgData: ""
             };
         },

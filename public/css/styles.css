@@ -41,7 +41,12 @@ body {
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.8);
-    z-index: 33333;
+    /* z-index: 33333; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* text-align: center; */
+    /* align-self: center; */
+    justify-content: center;
 }
 .modal-x {
     font-family: verdana;
@@ -51,4 +56,11 @@ body {
     right: 30px;
     font-size: 20px;
     cursor: pointer;
+}
+#img {
+    width: 50%;
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* text-align: center; */
+    align-self: center;
 }
