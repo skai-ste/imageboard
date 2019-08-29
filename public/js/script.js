@@ -37,16 +37,16 @@
             },
 
             myClick: function() {
-                console.log("myClick running!");
+                // console.log("myClick running!");
             },
             addComment: function() {
-                console.log("I AM ADDING COMMENT!");
+                // console.log("I AM ADDING COMMENT!");
                 var self = this;
                 console.log("THIS", this); //that our input are talking to each other
                 axios
                     .post("/comments/" + self.id, this.form)
                     .then(function(response) {
-                        console.log("comments.data:", response.data);
+                        console.log("comments.data:", response);
                         self.id.unshift(response.data);
                     });
                 // I making post request here

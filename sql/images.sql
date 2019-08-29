@@ -13,8 +13,8 @@ DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments(
     id SERIAL PRIMARY KEY,
-    comment VARCHAR(499) NOT NULL,
+    comment TEXT NOT NULL,
     username VARCHAR(199) NOT NULL,
-    user_id INTEGER REFERENCES images(id) NOT NULL UNIQUE,
+    user_id INTEGER REFERENCES images(id) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

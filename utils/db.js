@@ -40,14 +40,14 @@ exports.getImageData = function(id) {
         });
 };
 
-exports.addCommentsData = function(id, comment, username) {
+exports.addCommentsData = function(comment, username, user_id) {
     return db
         .query(
-            `INSERT INTO comments (id, comment, username) VALUES ($1, $2, $3) RETURNING *`,
-            [id, comment, username]
+            `INSERT INTO comments (comment, username, user_id) VALUES ($1, $2, $3)`,
+            [comment, username, user_id]
         )
         .then(({ rows }) => {
-            return rows[0];
+            return rows;
         });
 };
 
