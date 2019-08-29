@@ -79,7 +79,7 @@ app.get("/currentImage/:id", (req, res) => {
     console.log("req.params.id: ", req.params.id);
     getImageData(req.params.id)
         .then(result => {
-            console.log("RESULT: ", result);
+            // console.log("RESULT: ", result);
             res.json(result);
         })
         .catch(err => {
@@ -89,10 +89,11 @@ app.get("/currentImage/:id", (req, res) => {
 
 app.post("/comments/:id", (req, res) => {
     console.log("req.body", req.body);
-    addCommentsData(req.params.id, req.body.username, req.body.comment)
-        .then(id => {
-            req.session.id = id;
-            res.json(id);
+    addCommentsData(req.body.comment, req.body.username, req.params.id)
+        .then(comment => {
+            // console.log("COMMENT:", comment);
+            req.params.id = comment;
+            res.json(comment);
         })
         .catch(err => {
             console.log("ERROR :", err);
