@@ -7,11 +7,6 @@
 <body>
     <h1 id="title">Image Board!</h1>
     <div id="main">
-
-        <!-- <div v-for='planet in planets'>
-            <h1 @click='showModalMethod(planet.name)'>{{ planet.name }}</h1>
-        </div> -->
-
         <!-- ////render modal/// -->
         <image-modal
             v-if='showModal'
@@ -54,15 +49,14 @@
     <script id='image-modal-template' type='text/x-template'>
         <!-- all of the HTML for our component will be put in this div -->
         <div id="modal-appear">
-            <div id="modal-container">
             <p class="modal-x" @click='closeModal'>x</p>
+            <div id="modal-container">
             <p>{{imgData.title}}</p>
             <img id="img" v-bind:src="imgData.url"></img>
             <p>{{imgData.description}}</p>
-
-                <input v-model='username' name='username' placeholder="username" type='text'>
-                <input v-model='comment' name='comment' placeholder="comment" type='text'>
-                <!-- <button @click='handleClick'>comment</button> -->
+            <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
+            <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
+            <button id="comment-click" @click='addComment'>comment</button>
             </div>
             <!-- <h1>My templateeeee</h1> -->
             <!-- <h1 @click='myClick'>{{header}}</h1> -->
@@ -88,3 +82,6 @@
         <li v-for="planet in planets" @click="myFunction(planet.name)">{{planet.name}} , {{planet.color}}</li>
     </ul> -->
 <!-- </div>
+<div v-for='planet in planets'>
+    <h1 @click='showModalMethod(planet.name)'>{{ planet.name }}</h1>
+</div>

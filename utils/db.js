@@ -40,6 +40,17 @@ exports.getImageData = function(id) {
         });
 };
 
+exports.addCommentsData = function(id, comment, username) {
+    return db
+        .query(
+            `INSERT INTO comments (id, comment, username) VALUES ($1, $2, $3) RETURNING *`,
+            [id, comment, username]
+        )
+        .then(({ rows }) => {
+            return rows[0];
+        });
+};
+
 // SELECT * FROM images
 // WHERE id < $1
 // ORDER BY id DESC

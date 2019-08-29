@@ -1,5 +1,3 @@
-// console.log("sanity check!!!");
-
 (function() {
     Vue.component("image-modal", {
         // data, methods, mounted
@@ -11,7 +9,11 @@
         data: function() {
             return {
                 // header: "sasssafriends",
-                imgData: ""
+                imgData: "",
+                form: {
+                    username: "",
+                    comment: ""
+                }
             };
         },
         mounted: function() {
@@ -36,6 +38,11 @@
 
             myClick: function() {
                 console.log("myClick running!");
+            },
+            addComment: function() {
+                console.log("I AM ADDING COMMENT!");
+                // I makeing post requist here
+                // you gonna send information along with this
             }
         }
     });
@@ -52,31 +59,10 @@
             username: "",
             url: "",
             file: null
-            // planets: [
-            //     {
-            //         id: 1,
-            //         name: "pluto",
-            //         funFact: "not a planet"
-            //     },
-            //     {
-            //         id: 2,
-            //         name: "earth",
-            //         funFact: "there are human beings living here"
-            //     },
-            //     {
-            //         id: 3,
-            //         name: "mars",
-            //         funFact: "is red & has rowers on it"
-            //     }
-            // ]
         },
         mounted: function() {
-            // console.log("my vue has mounted!");
             var self = this;
             axios.get("/images").then(function(response) {
-                // console.log("this.images in then", this.images);
-                // console.log("me.images in then", me.images);
-                // console.log("This is my response!", response);
                 self.images = response.data;
                 console.log("response.data: ", response.data);
             });
@@ -89,9 +75,8 @@
             },
             showModalMethod: function(id) {
                 // this is the Vue instance
-                console.log("showModalMethod running!"); //after you click on imgae it whourld print that you clicked clicking
+                console.log("showModalMethod running!"); //after you click on imgae it whould print that you clicked clicking
                 this.showModal = true;
-                // console.log("planet: ", planet);
                 this.imageId = id;
             },
             handleClick: function(e) {
@@ -116,18 +101,9 @@
                     });
             },
             handleChange: function(e) {
-                // console.log("handleChange is running!!!!");
                 // console.log("file: ", e.target.files[0]);
                 this.file = e.target.files[0];
             }
         }
-        // methods: {
-        //     myFunction: function(planetName) {
-        //         console.log("myFunction is runing!", planetName);
-        //     },
-        //     myNextMethod: function() {
-        //         console.log("another method");
-        //     }
-        // }
     });
 })();
