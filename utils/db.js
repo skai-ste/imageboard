@@ -81,4 +81,5 @@ exports.getCommentsData = function(user_id) {
         });
 };
 
-// IF THERE IS NEXT IMG SHOW LEFT ARROW / EIGHT ARROW
+//i need to compare lowest id which i get from subquery with the lowest ID that exists in my images array in script.js
+//and i do this check in script js

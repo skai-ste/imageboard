@@ -64,6 +64,7 @@
             // imageId: location.hash.slice(1) OR currentImage: location.hash.slice(1)
 
             showModal: false,
+            showMoreButton: true,
 
             images: [],
             seen: true,
@@ -92,21 +93,23 @@
             loadNextPage: function() {
                 var self = this;
                 var lowestId = self.images[self.images.length - 1].id;
-                console.log(
-                    "SELF.IMAGES",
-                    self.images[self.images.length - 1].id
-                );
+                console.log("SELF.IMAGES", lowestId);
                 axios
                     .get("/images/" + lowestId, lowestId)
                     .then(function(response) {
-                        // console.log("RESPONSE.data:", response.data);
-                        // lowestId = response.data;
                         self.images.push(...response.data);
-                        //because both of them are arrays. It takes both object
-                        // and push them together
-                        console.log("RESPONSE.data: ", response.data);
 
-                        // self.images = self.images + response.data;
+                        var lastImage = self.images[self.images.length - 1];
+                        var currentLowestId = lastImage.id;
+                        var totalLowestId = lastImage.lowestId;
+
+                        if (currentLowestId == totalLowestId) {
+                            self.showMoreButton = false;
+                        }
+
+                        //because both of them are arrays. It takes both objects
+                        // and push them together
+                        // console.log("RESPONSE.data: ", response.data);
                     });
             },
             showModalMethod: function(id) {

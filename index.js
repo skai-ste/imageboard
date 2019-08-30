@@ -42,7 +42,6 @@ app.use(express.static("public"));
 app.get("/images", (req, res) => {
     getImages()
         .then(result => {
-            console.log("RESULT is: ", result);
             res.json(result);
         })
         .catch(err => {
@@ -54,8 +53,8 @@ app.get("/images/:lowestId", (req, res) => {
     console.log("req.params.lowestId", req.params.lowestId);
     getMoreImages(req.params.lowestId)
         .then(results => {
-            // console.log("RESULT: ", results);
             res.json(results);
+            // console.log("RESUUUUULTS:", results);
         })
         .catch(err => {
             console.log("ERR", err);
@@ -81,10 +80,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/currentImage/:id", (req, res) => {
-    console.log("req.params.id: ", req.params.id);
+    // console.log("req.params.id: ", req.params.id);
     getImageData(req.params.id)
         .then(result => {
-            // console.log("RESULT: ", result);
             res.json(result);
         })
         .catch(err => {
@@ -114,14 +112,5 @@ app.get("/comments/:id", (req, res) => {
             console.log("ERROR :", err);
         });
 });
-
-// after amazon is complete you should put your images. Because if amazon fales you have no image!
-//you should UNSHIFT image not push it. It's then infront of your images array
-
-// {
-//     image: 'https://whatever.com/fun.jpg',
-//     title: "",
-//     id: 11
-// }
 
 app.listen(8080, () => console.log("My image board server is UP!"));
