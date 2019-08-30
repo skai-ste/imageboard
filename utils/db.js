@@ -18,6 +18,17 @@ exports.getImages = function() {
         });
 };
 
+exports.getMoreImages = function(startId, offset) {
+    return db
+        .query(
+            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC LIMIT 16 OFFSET $2`,
+            [startId, offset]
+        )
+        .then(({ rows }) => {
+            return rows;
+        });
+};
+
 exports.addImageData = function(url, username, title, description) {
     return db
         .query(
