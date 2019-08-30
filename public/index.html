@@ -26,21 +26,21 @@
             <input @change='handleChange' name='file' type='file' accept='image/*'>
             <button @click='handleClick'>submit</button>
         </form>
-    <div class="cards-container">
-        <div
-        class="image-card"
-        v-if ="images.length"
-        v-for="image in images">
-            <img
-            id="image"
-            :src="image.url"
-            :alt="image.title"
-            @click="showModalMethod(image.id)"
-            ></img>
-            <h4>{{image.title}}</h4>
+        <div class="cards-container">
+            <div
+            class="image-card"
+            v-if ="images.length"
+            v-for="image in images">
+                <img
+                id="image"
+                :src="image.url"
+                :alt="image.title"
+                @click="showModalMethod(image.id)"
+                ></img>
+                <h4>{{image.title}}</h4>
+            </div>
         </div>
-    </div>
-
+        <button id="getMoreButton" @click='loadNextPage'>more</button>
 
 <!-- this div closes main -->
     </div>
@@ -58,8 +58,9 @@
                 <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
                 <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
                 <button id="comment-click" @click='addComment'>comment</button>
-                <div v-for="comment in comments">
-                    <p>{{comment.comment}}</p>
+                <div id="comments-container" v-for="comment in comments">
+                    <h3 id="username-space">{{comment.username}}</h3>
+                    <p id="comment-space">{{comment.comment}}</p>
                 </div>
             </div>
 

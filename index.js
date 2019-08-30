@@ -5,7 +5,8 @@ const {
     addImageData,
     getImageData,
     addCommentsData,
-    getCommentsData
+    getCommentsData,
+    getMoreImages
 } = require("./utils/db");
 const s3 = require("./s3");
 const config = require("./config");
@@ -40,6 +41,17 @@ app.use(express.static("public"));
 
 app.get("/images", (req, res) => {
     getImages()
+        .then(result => {
+            console.log("Result is: ", result);
+            res.json(result);
+        })
+        .catch(err => {
+            console.log("ERR", err);
+        });
+});
+
+app.get("/images/:offset", (req, res) => {
+    getMoreImages(req.params.offset, req.params.startId)
         .then(result => {
             console.log("Result is: ", result);
             res.json(result);

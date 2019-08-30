@@ -75,6 +75,9 @@
         },
         mounted: function() {
             var self = this;
+
+            // loadNextPage(); ///?////
+
             axios.get("/images").then(function(response) {
                 self.images = response.data;
                 console.log("response.data: ", response.data);
@@ -85,6 +88,26 @@
                 console.log("closeModalOnParent running");
                 this.showModal = false;
                 //here you can safely close the modal
+            },
+            loadNextPage: function() {
+                var offset = self.images.length; ///?////
+                axios.get("/images/offset/" + offset).then(function(response) {
+                    // console.log("RESPONSE.data:", response.data);
+                    self.images += response.data;
+                    // self.images = self.images + response.data;
+
+                    // First page:
+                    // response.data.length == 10
+                    // self.images.lenght == 10
+                    // Next page offset == 10, because we already have 10 images
+                    //
+                    // Second page:
+                    // response.data.length == 10
+                    // self.images.lenght == 20
+                    // Next page offset == 20, because we already have 20 images
+
+                    console.log("response.data: ", response.data);
+                });
             },
             showModalMethod: function(id) {
                 // this is the Vue instance
