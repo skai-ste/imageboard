@@ -18,11 +18,19 @@ exports.getImages = function() {
         });
 };
 
-exports.getMoreImages = function(startId, offset) {
+exports.getMoreImages = function(lowestId) {
     return db
         .query(
-            `SELECT id, url, username, title, description FROM images WHERE id < $1 ORDER BY created_at DESC LIMIT 16 OFFSET $2`,
-            [startId, offset]
+            `SELECT id, url, username, title, description, (
+                    SELECT id
+                    FROM images
+                    ORDER BY id ASC
+                    LIMIT 1
+            ) AS "lowestId" FROM images
+            WHERE id < $1
+            ORDER BY id DESC
+            LIMIT 16`,
+            [lowestId]
         )
         .then(({ rows }) => {
             return rows;
@@ -72,28 +80,5 @@ exports.getCommentsData = function(user_id) {
             return rows;
         });
 };
-
-// SELECT * FROM images
-// WHERE id < $1
-// ORDER BY id DESC
-// LIMIT 20
-//
-// // infinite scrool is better choice as with more button you need to fugure out how many pictures and ect
-//
-// SELECT id AS "lowestId"
-// FROM images
-// ORDER BY id ASC
-// LIMIT 1
-// // you can do seperate query or this bellow
-// // SELECT images.id, images.title (
-// SELECT *, (
-//     SELECT id
-//     FROM images
-//     ORDER BY id ASC
-//     LIMIT 1
-// ) as "lowestId" FROM images
-// WHERE id < $1
-// ORDER BY id DESC
-// LIMIT 20
 
 // IF THERE IS NEXT IMG SHOW LEFT ARROW / EIGHT ARROW

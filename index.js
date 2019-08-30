@@ -42,7 +42,7 @@ app.use(express.static("public"));
 app.get("/images", (req, res) => {
     getImages()
         .then(result => {
-            // console.log("Result is: ", result);
+            console.log("RESULT is: ", result);
             res.json(result);
         })
         .catch(err => {
@@ -50,11 +50,11 @@ app.get("/images", (req, res) => {
         });
 });
 
-app.get("/images/:offset", (req, res) => {
-    console.log("req.params.offset", req.params.offset);
-    getMoreImages(req.params.offset)
+app.get("/images/:lowestId", (req, res) => {
+    console.log("req.params.lowestId", req.params.lowestId);
+    getMoreImages(req.params.lowestId)
         .then(results => {
-            console.log("RESULT: ", results);
+            // console.log("RESULT: ", results);
             res.json(results);
         })
         .catch(err => {
