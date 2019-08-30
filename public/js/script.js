@@ -90,10 +90,12 @@
                 //here you can safely close the modal
             },
             loadNextPage: function() {
+                var self = this;
                 var offset = self.images.length; ///?////
-                axios.get("/images/offset/" + offset).then(function(response) {
+                console.log("SELF.IMAGES", self.images.length);
+                axios.get("/images/" + offset, offset).then(function(response) {
                     // console.log("RESPONSE.data:", response.data);
-                    self.images += response.data;
+                    self.images = response.data;
                     // self.images = self.images + response.data;
 
                     // First page:
@@ -106,7 +108,7 @@
                     // self.images.lenght == 20
                     // Next page offset == 20, because we already have 20 images
 
-                    console.log("response.data: ", response.data);
+                    console.log("RESPONSE.data: ", response.data);
                 });
             },
             showModalMethod: function(id) {

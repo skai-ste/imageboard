@@ -42,7 +42,7 @@ app.use(express.static("public"));
 app.get("/images", (req, res) => {
     getImages()
         .then(result => {
-            console.log("Result is: ", result);
+            // console.log("Result is: ", result);
             res.json(result);
         })
         .catch(err => {
@@ -51,10 +51,11 @@ app.get("/images", (req, res) => {
 });
 
 app.get("/images/:offset", (req, res) => {
-    getMoreImages(req.params.offset, req.params.startId)
-        .then(result => {
-            console.log("Result is: ", result);
-            res.json(result);
+    console.log("req.params.offset", req.params.offset);
+    getMoreImages(req.params.offset)
+        .then(results => {
+            console.log("RESULT: ", results);
+            res.json(results);
         })
         .catch(err => {
             console.log("ERR", err);

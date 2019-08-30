@@ -11,7 +11,7 @@ if (process.env.DATABASE_URL) {
 exports.getImages = function() {
     return db
         .query(
-            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC`
+            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC LIMIT 16`
         )
         .then(({ rows }) => {
             return rows;
@@ -21,7 +21,7 @@ exports.getImages = function() {
 exports.getMoreImages = function(startId, offset) {
     return db
         .query(
-            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC LIMIT 16 OFFSET $2`,
+            `SELECT id, url, username, title, description FROM images WHERE id < $1 ORDER BY created_at DESC LIMIT 16 OFFSET $2`,
             [startId, offset]
         )
         .then(({ rows }) => {
