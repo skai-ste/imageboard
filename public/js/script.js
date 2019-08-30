@@ -91,25 +91,23 @@
             },
             loadNextPage: function() {
                 var self = this;
-                var offset = self.images.length; ///?////
-                console.log("SELF.IMAGES", self.images.length);
-                axios.get("/images/" + offset, offset).then(function(response) {
-                    // console.log("RESPONSE.data:", response.data);
-                    self.images = response.data;
-                    // self.images = self.images + response.data;
+                var lowestId = self.images[self.images.length - 1].id;
+                console.log(
+                    "SELF.IMAGES",
+                    self.images[self.images.length - 1].id
+                );
+                axios
+                    .get("/images/" + lowestId, lowestId)
+                    .then(function(response) {
+                        // console.log("RESPONSE.data:", response.data);
+                        // lowestId = response.data;
+                        self.images.push(...response.data);
+                        //because both of them are arrays. It takes both object
+                        // and push them together
+                        console.log("RESPONSE.data: ", response.data);
 
-                    // First page:
-                    // response.data.length == 10
-                    // self.images.lenght == 10
-                    // Next page offset == 10, because we already have 10 images
-                    //
-                    // Second page:
-                    // response.data.length == 10
-                    // self.images.lenght == 20
-                    // Next page offset == 20, because we already have 20 images
-
-                    console.log("RESPONSE.data: ", response.data);
-                });
+                        // self.images = self.images + response.data;
+                    });
             },
             showModalMethod: function(id) {
                 // this is the Vue instance
