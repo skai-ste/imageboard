@@ -40,7 +40,7 @@
                 <h4>{{image.title}}</h4>
             </div>
         </div>
-        <button id="getMoreButton" @click='loadNextPage'>more</button>
+        <button v-if='showMoreButton' id="getMoreButton" @click='loadNextPage'>more</button>
 
 <!-- this div closes main -->
     </div>
