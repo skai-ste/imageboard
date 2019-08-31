@@ -66,8 +66,6 @@ body {
 #img {
     width: 100%;
     display: flex;
-    /* flex-wrap: wrap;
-    text-align: center; */
     align-self: center;
 }
 #username-input {

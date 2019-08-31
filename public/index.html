@@ -31,12 +31,12 @@
             class="image-card"
             v-if ="images.length"
             v-for="image in images">
+            <a :href="'#' + image.id">
                 <img
                 id="image"
                 :src="image.url"
                 :alt="image.title"
-                @click="showModalMethod(image.id)"
-                ></img>
+                ></img></a>
                 <h4>{{image.title}}</h4>
             </div>
         </div>

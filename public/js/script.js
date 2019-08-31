@@ -20,12 +20,17 @@
         mounted: function() {
             console.log("THIS.ID : ", this.id);
             var self = this;
-            axios.get("/currentImage/" + self.id).then(function(response) {
-                self.imgData = response.data;
-            });
+            axios
+                .get("/currentImage/" + self.id)
+                .then(function(response) {
+                    self.imgData = response.data;
+                })
+                .catch(function(err) {
+                    console.log("ERROR", err);
+                    self.closeModal();
+                });
             axios.get("/comments/" + self.id).then(function(response) {
                 self.comments = response.data;
-                // console.log("RESPONSE.data: ", response.data);
             });
             // mounted works the same as mounted in Vue instance
             // only difference is this function runs when the component
@@ -33,6 +38,24 @@
             // console.log("mounted is running!");
         },
         // methods only run when a user does something (click, mousover, etc.)
+        watch: {
+            id: function() {
+                console.log("THIS.ID : ", this.id);
+                var self = this;
+                axios
+                    .get("/currentImage/" + self.id)
+                    .then(function(response) {
+                        self.imgData = response.data;
+                    })
+                    .catch(function(err) {
+                        console.log("ERROR", err);
+                        self.closeModal();
+                    });
+                axios.get("/comments/" + self.id).then(function(response) {
+                    self.comments = response.data;
+                });
+            }
+        },
         methods: {
             closeModal: function() {
                 // console.log("closeModal running");
@@ -60,7 +83,7 @@
     new Vue({
         el: "#main",
         data: {
-            imageId: "",
+            imageId: location.hash.slice(1),
             // imageId: location.hash.slice(1) OR currentImage: location.hash.slice(1)
 
             showModal: false,
@@ -76,8 +99,15 @@
         },
         mounted: function() {
             var self = this;
-
+            if (self.imageId.length > 0) {
+                self.showModal = true;
+            }
             // loadNextPage(); ///?////
+            window.addEventListener("hashchange", function() {
+                console.log("location.hash", location.hash.substring(1));
+                self.showModal = true;
+                self.imageId = location.hash.substring(1);
+            });
 
             axios.get("/images").then(function(response) {
                 self.images = response.data;
@@ -88,6 +118,7 @@
             closeModalOnParent: function() {
                 console.log("closeModalOnParent running");
                 this.showModal = false;
+                location.hash = "";
                 //here you can safely close the modal
             },
             loadNextPage: function() {
@@ -111,12 +142,6 @@
                         // and push them together
                         // console.log("RESPONSE.data: ", response.data);
                     });
-            },
-            showModalMethod: function(id) {
-                // this is the Vue instance
-                console.log("showModalMethod running!"); //after you click on imgae it whould print that you clicked clicking
-                this.showModal = true;
-                this.imageId = id;
             },
             handleClick: function(e) {
                 e.preventDefault();
