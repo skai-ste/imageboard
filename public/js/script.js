@@ -119,6 +119,7 @@
                 console.log("closeModalOnParent running");
                 this.showModal = false;
                 location.hash = "";
+                // history.pushstate({}, "", "/"); //deletes hash
                 //here you can safely close the modal
             },
             loadNextPage: function() {
@@ -159,6 +160,7 @@
                     .then(function(resp) {
                         self.images.unshift(resp.data);
                         console.log("resp from post /upload: ", resp);
+                        document.getElementById("myForm").reset();
                     })
                     .catch(function(err) {
                         console.log("err in post /upload: ", err);
