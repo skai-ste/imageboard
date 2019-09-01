@@ -11,7 +11,7 @@ if (process.env.DATABASE_URL) {
 exports.getImages = function() {
     return db
         .query(
-            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC LIMIT 16`
+            `SELECT id, url, username, title, description FROM images ORDER BY created_at DESC LIMIT 12`
         )
         .then(({ rows }) => {
             return rows;
@@ -29,7 +29,7 @@ exports.getMoreImages = function(lowestId) {
             ) AS "lowestId" FROM images
             WHERE id < $1
             ORDER BY id DESC
-            LIMIT 16`,
+            LIMIT 12`,
             [lowestId]
         )
         .then(({ rows }) => {

@@ -1,38 +1,112 @@
 body {
-    background-color: whitesmoke;
+    box-sizing: border-box;
+    background-color: black;
+    /* position: relative; */
+    /* text-align: center; */
+}
+#main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .cards-container {
-    display: grid;
-    grid-template-columns: repeat(4, 360px);
-}
-.highlight {
-    font-weight: bold;
-    color: lightgrey;
-}
-.inputs {
-    text-align: center;
-    /* align-self: center; */
-    margin: 40px;
+    width: 75vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
 }
 #title {
+    color: whitesmoke;
     text-align: center;
-    font-size: 50px;
-    margin: 20px;
+    font-size: 60px;
+    /* font-family: "Noto Sans KR", sans-serif; */
+    font-family: "Nunito Sans", sans-serif;
+    margin-top: 60px;
+}
+.inputs {
+    margin-top: 40px;
+    margin-bottom: 70px;
+    color: grey;
+    width: 75vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    text-decoration: none;
+    align-items: center;
+}
+.inputs input {
+    height: 20px;
+    width: 200px;
+    background: black;
+    border: 1px dotted grey;
+    margin-right: 7px;
+    margin-left: 7px;
+    outline: none;
+    color: whitesmoke;
+    font-size: 13px;
+    padding: 4px;
+    font-family: "Nunito Sans", sans-serif;
+}
+.inputs input:hover {
+    border: 1px solid whitesmoke;
+    outline: none;
+}
+.inputs button {
+    height: 30px;
+    width: 80px;
+    background-color: black;
+    color: whitesmoke;
+    border: 1px solid grey;
+    outline: none;
+    font-size: 12px;
+    font-family: "Nunito Sans", sans-serif;
+    /* border-radius: 5px; */
+}
+.inputs button:hover {
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    outline: none;
+}
+.inputs button:active {
+    background-color: #778899;
+    color: whitesmoke;
+    border: 1px solid grey;
+    outline: none;
 }
 #image {
     width: 300px;
-    height: 200px;
+    height: 300px;
     object-fit: cover;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
 }
 .image-card {
-    display: grid;
     max-width: 300px;
-    padding: 20px;
-    background-color: whitesmoke;
-    color: grey;
-    border: 1px solid grey;
-    margin-bottom: 20px;
+    padding: 10px;
+    background-color: black;
+    color: lightgrey;
+    border: 1px solid transparent;
+    /* transition: 0.5s; */
+    margin-bottom: 50px;
+    font-family: "Nunito Sans", sans-serif;
+}
+.image-card:hover {
+    border: 1px dotted grey;
+    color: lightgrey;
+    padding: 10px;
+}
+.image-card h4 {
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 18px;
+}
+.image-card p {
+    font-size: 13px;
+    margin-top: 2px;
+    margin-bottom: 0;
 }
 #modal-appear {
     position: fixed;
@@ -91,6 +165,6 @@ body {
 #getMoreButton {
     height: 3em;
     width: 8em;
-    align-self: center;
     margin: 20px;
+    text-align: center;
 }
