@@ -67,11 +67,12 @@
                     <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
                     <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
                     <button @click='addComment'>comment</button>
+                    <div class="comments-space" v-for="comment in comments">
+                        <p id="username-space">{{comment.username}}</p>
+                        <p id="comment-space">{{comment.comment}}</p>
+                    </div>
                 </div>
-                <div v-for="comment in comments">
-                    <p id="username-space">{{comment.username}}</p>
-                    <p id="comment-space">{{comment.comment}}</p>
-                </div>
+
                 <!-- <h1>My templateeeee</h1> -->
                 <!-- <h1 @click='myClick'>{{header}}</h1> -->
                 <!-- <h1 @click='myClick'></h1> -->
