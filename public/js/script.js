@@ -74,8 +74,8 @@
                     .then(function(response) {
                         console.log("comments.data:", response.data);
                         self.comments.unshift(response.data);
-                        // document.getElementById("username-input").val = "";
-                        // document.getElementById("comment-input").val = "";
+                        self.form.username = "";
+                        self.form.comment = "";
                     })
                     .catch(function(err) {
                         console.log(err);
@@ -165,7 +165,12 @@
                     .then(function(resp) {
                         self.images.unshift(resp.data);
                         console.log("resp from post /upload: ", resp);
-                        document.getElementById("myForm").reset();
+                        self.title = "";
+                        self.description = "";
+                        self.username = "";
+                        // document.getElementById("file").value = "";
+
+                        // document.getElementById("myForm").reset();
                     })
                     .catch(function(err) {
                         console.log("err in post /upload: ", err);
