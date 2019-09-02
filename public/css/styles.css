@@ -199,12 +199,12 @@ body {
     margin-top: 2px;
     margin-bottom: 0;
 }
-#comments-inputs-container {
+.comments-inputs-container {
     width: 30vw;
     margin-top: 8vw;
     margin-left: 8vw;
 }
-#comments-inputs-container input {
+.comments-inputs-container input {
     width: 100%;
     background: black;
     border: 1px dotted grey;
@@ -228,7 +228,7 @@ body {
     /* vertical-align: bottom; */
     /* text-align: justify; */
 }
-#comments-inputs-container button {
+.comments-inputs-container button {
     margin-top: 10px;
     height: 2.2em;
     width: 8em;
@@ -240,11 +240,11 @@ body {
     cursor: pointer;
     outline: none;
 }
-#comments-inputs-container button:hover {
+.comments-inputs-container button:hover {
     background-color: #778899;
     outline: none;
 }
-#comments-inputs-container button:active {
+.comments-inputs-container button:active {
     background-color: whitesmoke;
     color: grey;
     outline: none;

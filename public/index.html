@@ -63,13 +63,13 @@
                     <h4>{{imgData.title}}</h4>
                     <p>{{imgData.description}}</p>
                 </div>
-                <div id="comments-inputs-container">
+                <div class="comments-inputs-container">
                     <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
                     <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
                     <button @click='addComment'>comment</button>
                     <div class="comments-space" v-for="comment in comments">
-                        <p id="username-space">{{comment.username}}</p>
-                        <p id="comment-space">{{comment.comment}}</p>
+                        <p id="username-comment">{{comment.username}}</p>
+                        <p id="comment-comment">{{comment.comment}}</p>
                     </div>
                 </div>
 

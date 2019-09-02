@@ -74,6 +74,11 @@
                     .then(function(response) {
                         console.log("comments.data:", response.data);
                         self.comments.unshift(response.data);
+                        // document.getElementById("username-input").val = "";
+                        // document.getElementById("comment-input").val = "";
+                    })
+                    .catch(function(err) {
+                        console.log(err);
                     });
                 // I making post request here
                 // you gonna send information along with this
