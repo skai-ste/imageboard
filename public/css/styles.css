@@ -146,7 +146,8 @@ body {
     margin-top: 2px;
     margin-bottom: 0;
 }
-#modal-appear {
+/* //////////////////////////////////////////////////////////// */
+.modal-appear {
     position: fixed;
     top: 0;
     left: 0;
@@ -155,12 +156,10 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
     /* z-index: 33333; */
     display: flex;
-    /* flex-wrap: wrap; */
-    /* text-align: center; */
-    /* align-self: center; */
+    flex-wrap: wrap;
     justify-content: center;
-    align-self: center;
     color: whitesmoke;
+    font-family: "Nunito Sans", sans-serif;
 }
 .modal-x {
     font-family: verdana;
@@ -171,35 +170,80 @@ body {
     font-size: 20px;
     cursor: pointer;
 }
-#modal-container {
-    margin-top: 50px;
-    width: 40%;
+.align-container {
+    width: 75vw;
+    display: flex;
+    /* flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center; */
+}
+
+#modal-image-container {
+    /* width: 90%; */
 }
 #img {
-    width: 100%;
+    width: 35vw;
     display: flex;
-    align-self: center;
+    align-self: flex-start;
+    margin-top: 8vw;
+}
+#modal-image-container h4 {
+    margin-top: 6px;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+#modal-image-container p {
+    font-size: 15px;
+    margin-top: 2px;
+    margin-bottom: 0;
+}
+#comments-inputs-container {
+    width: 30vw;
+    margin-top: 8vw;
+    margin-left: 8vw;
+}
+#comments-inputs-container input {
+    width: 100%;
+    height: 28px;
+    background: black;
+    border: 1px dotted grey;
+    outline: none;
+    color: whitesmoke;
+    font-size: 13px;
+    padding: 4px;
+    font-family: "Nunito Sans", sans-serif;
 }
 #username-input {
-    margin-top: 5px;
-    width: 100%;
-    height: 20px;
+    margin-top: 0;
 }
 #comment-input {
-    margin-top: 5px;
-    width: 100%;
-    height: 20px;
+    margin-top: 10px;
 }
-#comment-click {
-    margin-top: 5px;
+#comments-inputs-container button {
+    margin-top: 10px;
+    height: 2em;
+    width: 8em;
+    background-color: black;
+    color: whitesmoke;
+    border: 1px solid grey;
+    font-size: 14px;
+    font-family: "Nunito Sans", sans-serif;
+    cursor: pointer;
+    outline: none;
 }
-#comments-container {
-    padding-left: 10px;
-    margin-top: 20px;
-    background-color: grey;
-    display: flex;
-    flex-direction: column;
+#comments-inputs-container button:hover {
+    background-color: #778899;
+    outline: none;
 }
+#comments-inputs-container button:active {
+    background-color: whitesmoke;
+    color: grey;
+    outline: none;
+}
+
+/* //////////////////////////////////////////////////////////// */
 .button-container {
     display: flex;
     flex-wrap: wrap;
@@ -219,6 +263,7 @@ body {
     font-size: 16px;
     font-family: "Nunito Sans", sans-serif;
     cursor: pointer;
+    outline: none;
     /* border-radius: 10px; */
 }
 .button-container button:hover {

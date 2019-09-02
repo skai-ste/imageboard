@@ -55,27 +55,27 @@
     <!-- our script tag must be outside of #main!!! -->
     <script id='image-modal-template' type='text/x-template'>
         <!-- all of the HTML for our component will be put in this div -->
-        <div id="modal-appear">
+        <div class="modal-appear">
             <p class="modal-x" @click='closeModal'>x</p>
-            <div id="modal-container">
-                <p>{{imgData.title}}</p>
-
-                <img id="img" v-bind:src="imgData.url"></img>
-                <p>{{imgData.description}}</p>
-                <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
-                <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
-                <button id="comment-click" @click='addComment'>comment</button>
-                <div id="comments-container" v-for="comment in comments">
-                    <h3 id="username-space">{{comment.username}}</h3>
+            <div class="align-container">
+                <div id="modal-image-container">
+                    <img id="img" v-bind:src="imgData.url"></img>
+                    <h4>{{imgData.title}}</h4>
+                    <p>{{imgData.description}}</p>
+                </div>
+                <div id="comments-inputs-container">
+                    <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
+                    <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
+                    <button @click='addComment'>comment</button>
+                </div>
+                <div v-for="comment in comments">
+                    <p id="username-space">{{comment.username}}</p>
                     <p id="comment-space">{{comment.comment}}</p>
                 </div>
+                <!-- <h1>My templateeeee</h1> -->
+                <!-- <h1 @click='myClick'>{{header}}</h1> -->
+                <!-- <h1 @click='myClick'></h1> -->
             </div>
-
-
-            <!-- <h1>My templateeeee</h1> -->
-            <!-- <h1 @click='myClick'>{{header}}</h1> -->
-            <!-- <h1 @click='myClick'></h1> -->
-
         </div>
     </script>
 
