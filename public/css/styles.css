@@ -1,8 +1,6 @@
 body {
     box-sizing: border-box;
     background-color: black;
-    /* position: relative; */
-    /* text-align: center; */
 }
 #main-container {
     display: flex;
@@ -12,17 +10,14 @@ body {
 .cards-container {
     width: 75vw;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 #title {
     color: whitesmoke;
     text-align: center;
     font-size: 60px;
-    /* font-family: "Noto Sans KR", sans-serif; */
     font-family: "Nunito Sans", sans-serif;
     margin-top: 60px;
 }
@@ -36,7 +31,7 @@ body {
     flex-direction: row;
     justify-content: center;
     text-decoration: none;
-    align-items: center;
+    align-items: normal;
 }
 .inputs input {
     height: 20px;
@@ -62,8 +57,6 @@ body {
     overflow: hidden;
     position: absolute;
     z-index: -1;
-    /* display: flex;
-    justify-content: center; */
 }
 .inputfile + label {
     height: 28px;
@@ -76,15 +69,10 @@ body {
     margin-left: 7px;
     text-align: center;
     line-height: 28px;
-    /* vertical-align: middle; */
     font-family: "Nunito Sans", sans-serif;
-    /* display: flex;
-    justify-content: center; */
     display: inline-block;
     cursor: pointer;
-    /* border-radius: 10px; */
 }
-
 .inputfile:focus + label,
 .inputfile + label:hover {
     background-color: #778899;
@@ -99,9 +87,7 @@ body {
     outline: none;
     font-size: 12px;
     font-family: "Nunito Sans", sans-serif;
-    /* border-radius: 5px; */
     cursor: pointer;
-    /* border-radius: 10px; */
 }
 .inputs button:hover {
     color: whitesmoke;
@@ -118,7 +104,6 @@ body {
     width: 300px;
     height: 300px;
     object-fit: cover;
-    /* border: 1px solid grey; */
 }
 .image-card {
     max-width: 300px;
@@ -126,7 +111,6 @@ body {
     background-color: black;
     color: lightgrey;
     border: 1px solid transparent;
-    /* transition: 0.5s; */
     margin-bottom: 50px;
     font-family: "Nunito Sans", sans-serif;
 }
@@ -134,7 +118,6 @@ body {
     border: 1px dotted grey;
     color: lightgrey;
     padding: 10px;
-    /* text-decoration: underline; */
 }
 .image-card h4 {
     margin-top: 6px;
@@ -146,15 +129,13 @@ body {
     margin-top: 2px;
     margin-bottom: 0;
 }
-/* //////////////////////////////////////////////////////////// */
 .modal-appear {
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    /* z-index: 33333; */
+    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -173,15 +154,6 @@ body {
 .align-container {
     width: 75vw;
     display: flex;
-    /* flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-content: center;
-    align-items: center; */
-}
-
-#modal-image-container {
-    /* width: 90%; */
 }
 #img {
     width: 35vw;
@@ -221,15 +193,10 @@ body {
 #comment-input {
     margin-top: 10px;
     height: 2.4em;
-    /* height: 4em; */
-}
-#comment-input::placeholder {
-    /* text-indent: inherit; */
-    /* vertical-align: bottom; */
-    /* text-align: justify; */
 }
 .comments-inputs-container button {
     margin-top: 10px;
+    margin-bottom: 10px;
     height: 2.2em;
     width: 8em;
     background-color: black;
@@ -249,14 +216,22 @@ body {
     color: grey;
     outline: none;
 }
+.comments-container {
+    height: 420px;
+    width: 32vw;
+    display: block;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 1px;
+}
+
 .comments-space {
-    width: 30vw;
+    width: 30.5vw;
     margin-top: 2vw;
-    /* background-color: black; */
-    /* padding: 10px; */
     border-bottom: 1px solid grey;
 }
-/* //////////////////////////////////////////////////////////// */
 .button-container {
     display: flex;
     flex-wrap: wrap;
@@ -277,16 +252,13 @@ body {
     font-family: "Nunito Sans", sans-serif;
     cursor: pointer;
     outline: none;
-    /* border-radius: 10px; */
 }
 .button-container button:hover {
     background-color: #778899;
-    /* border: 1px solid whitesmoke; */
     outline: none;
 }
 .button-container button:active {
     background-color: whitesmoke;
     color: grey;
-    /* border: 1px solid grey; */
     outline: none;
 }
