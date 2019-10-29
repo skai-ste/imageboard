@@ -26,7 +26,8 @@ exports.getMoreImages = function(lowestId) {
                     FROM images
                     ORDER BY id ASC
                     LIMIT 1
-            ) AS "lowestId" FROM images
+            ) AS "lowestId"
+            FROM images
             WHERE id < $1
             ORDER BY id DESC
             LIMIT 12`,
@@ -51,7 +52,21 @@ exports.addImageData = function(url, username, title, description) {
 exports.getImageData = function(id) {
     return db
         .query(
-            `SELECT id, url, username, title, description, created_at FROM images WHERE id = $1`,
+            `SELECT id, url, username, title, description, created_at, (
+                    SELECT id
+                    FROM images
+                    WHERE id > $1
+                    ORDER BY id DESC
+                    LIMIT 1
+            ) AS "prevId", (
+                    SELECT id
+                    FROM images
+                    WHERE id < $1
+                    ORDER BY id DESC
+                    LIMIT 1
+            ) AS "nextId"
+            FROM images
+            WHERE id = $1`,
             [id]
         )
         .then(({ rows }) => {
@@ -80,6 +95,3 @@ exports.getCommentsData = function(user_id) {
             return rows;
         });
 };
-
-//i need to compare lowest id which i get from subquery with the lowest ID that exists in my images array in script.js
-//and i do this check in script js
