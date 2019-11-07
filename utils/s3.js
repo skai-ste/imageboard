@@ -23,11 +23,11 @@ exports.upload = function(req, res, next) {
     const promise = s3
         .putObject({
             Bucket: "spicedling",
-            ACL: "public-read", //everyone who has url of the img can read it
+            ACL: "public-read",
             Key: filename,
-            Body: fs.createReadStream(path), // The path is available as a property of req.file
+            Body: fs.createReadStream(path),
             ContentType: mimetype,
-            ContentLength: size // You can use the size property of req.file for this
+            ContentLength: size
         })
         .promise();
 
@@ -35,11 +35,10 @@ exports.upload = function(req, res, next) {
         .then(() => {
             // it worked!!!
             next();
-            //that means the file is at amazon, and if it there the url is s2/wwwmaazon.com/name of your bucket/maybeimgname
-            fs.unlink(path, () => {}); //when it get too many files
+            // file is at amazon and the url is s3.amazonaws.com/bucketname/filename
+            fs.unlink(path, () => {});
         })
         .catch(err => {
-            // uh oh
             console.log(err);
             res.sendStatus(500);
         });

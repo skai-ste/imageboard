@@ -1,5 +1,7 @@
-body {
+* {
     box-sizing: border-box;
+}
+body {
     background-color: black;
 }
 #main-container {
@@ -11,8 +13,7 @@ body {
     width: 75vw;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: flex-start;
 }
 #title {
     color: whitesmoke;
@@ -34,12 +35,13 @@ body {
     align-items: normal;
 }
 .inputs input {
-    height: 20px;
+    height: 28px;
     width: 200px;
     background: black;
     border: 1px dotted grey;
     margin-right: 7px;
     margin-left: 7px;
+    margin-bottom: 2%;
     outline: none;
     color: whitesmoke;
     font-size: 13px;
@@ -101,17 +103,18 @@ body {
     outline: none;
 }
 #image {
-    width: 300px;
-    height: 300px;
+    width: 100%;
     object-fit: cover;
 }
 .image-card {
-    max-width: 300px;
+    width: 31.3%;
     padding: 10px;
     background-color: black;
     color: lightgrey;
     border: 1px solid transparent;
     margin-bottom: 50px;
+    margin-left: 1%;
+    margin-left: 1%;
     font-family: "Nunito Sans", sans-serif;
 }
 .image-card:hover {
@@ -224,7 +227,18 @@ body {
     scroll-behavior: smooth;
 }
 ::-webkit-scrollbar {
-    width: 1px;
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: black;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: black;
+    border: 1px solid grey;
 }
 
 .comments-space {

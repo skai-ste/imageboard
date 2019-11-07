@@ -7,7 +7,6 @@ if (process.env.DATABASE_URL) {
     const { dbuser, dbpass } = require("../secrets.json");
     db = spicedPg(`postgres:${dbuser}:${dbpass}@localhost:5432/imageboard`);
 }
-
 exports.getImages = function() {
     return db
         .query(
@@ -17,7 +16,6 @@ exports.getImages = function() {
             return rows;
         });
 };
-
 exports.getMoreImages = function(lowestId) {
     return db
         .query(
@@ -37,7 +35,6 @@ exports.getMoreImages = function(lowestId) {
             return rows;
         });
 };
-
 exports.addImageData = function(url, username, title, description) {
     return db
         .query(
@@ -48,7 +45,6 @@ exports.addImageData = function(url, username, title, description) {
             return rows[0];
         });
 };
-
 exports.getImageData = function(id) {
     return db
         .query(
@@ -73,7 +69,6 @@ exports.getImageData = function(id) {
             return rows[0];
         });
 };
-
 exports.addCommentsData = function(comment, username, user_id) {
     return db
         .query(
@@ -84,7 +79,6 @@ exports.addCommentsData = function(comment, username, user_id) {
             return rows[0];
         });
 };
-
 exports.getCommentsData = function(user_id) {
     return db
         .query(

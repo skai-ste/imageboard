@@ -45,33 +45,26 @@ app.get("/images", (req, res) => {
             res.json(result);
         })
         .catch(err => {
-            console.log("ERR", err);
+            console.log("ERROR :", err);
         });
 });
 
 app.get("/images/:lowestId", (req, res) => {
-    console.log("req.params.lowestId", req.params.lowestId);
     getMoreImages(req.params.lowestId)
         .then(results => {
             res.json(results);
-            // console.log("RESUUUUULTS:", results);
         })
         .catch(err => {
-            console.log("ERR", err);
+            console.log("ERROR :", err);
         });
 });
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-    // req.file - the file that was just uploaded
-    // req.body - refers to the values we type in the input fiels
     const { filename } = req.file;
-    const url = config.s3Url + filename; //if you got here you have url of img and all other information
-    console.log("URL :", url);
-    const { title, username, description } = req.body; // you gotta put this information in database, you will do data base query INSERT : title, username, description, url. Send that back into response
-
+    const url = config.s3Url + filename;
+    const { title, username, description } = req.body;
     addImageData(url, username, title, description)
         .then(result => {
-            console.log("result :", result);
             res.json(result);
         })
         .catch(err => {
@@ -80,7 +73,6 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.get("/currentImage/:id", (req, res) => {
-    // console.log("req.params.id: ", req.params.id);
     getImageData(req.params.id)
         .then(result => {
             res.json(result);
@@ -91,10 +83,8 @@ app.get("/currentImage/:id", (req, res) => {
 });
 
 app.post("/comments/:id", (req, res) => {
-    console.log("req.body", req.body, "params:", req.params);
     addCommentsData(req.body.comment, req.body.username, req.params.id)
         .then(comment => {
-            console.log("COMMENT:", comment);
             res.json(comment);
         })
         .catch(err => {
@@ -105,7 +95,6 @@ app.post("/comments/:id", (req, res) => {
 app.get("/comments/:id", (req, res) => {
     getCommentsData(req.params.id)
         .then(comments => {
-            console.log("COMMENTSSS:", comments);
             res.json(comments);
         })
         .catch(err => {
