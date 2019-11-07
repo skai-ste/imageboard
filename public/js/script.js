@@ -8,8 +8,8 @@
         // then it must be kebab-case on html
         data: function() {
             return {
-                // header: "sasssafriends",
                 imgData: "",
+                currentImg: "",
                 form: {
                     username: "",
                     comment: ""
@@ -18,7 +18,7 @@
             };
         },
         mounted: function() {
-            console.log("THIS.ID : ", this.id);
+            // console.log("THIS.ID : ", this.id);
             var self = this;
             axios
                 .get("/currentImage/" + self.id)
@@ -40,7 +40,7 @@
         // methods only run when a user does something (click, mousover, etc.)
         watch: {
             id: function() {
-                console.log("THIS.ID : ", this.id);
+                // console.log("THIS.ID : ", this.id);
                 var self = this;
                 axios
                     .get("/currentImage/" + self.id)
@@ -58,21 +58,17 @@
         },
         methods: {
             closeModal: function() {
-                // console.log("closeModal running");
                 this.$emit("close");
             },
 
-            myClick: function() {
-                // console.log("myClick running!");
-            },
+            myClick: function() {},
             addComment: function() {
-                // console.log("I AM ADDING COMMENT!");
                 var self = this;
-                console.log("THIS", this); //that our input are talking to each other
+                // console.log("THIS", this); //that our input are talking to each other
                 axios
                     .post("/comments/" + self.id, this.form)
                     .then(function(response) {
-                        console.log("comments.data:", response.data);
+                        // console.log("comments.data:", response.data);
                         self.comments.unshift(response.data);
                         self.form.username = "";
                         self.form.comment = "";
@@ -82,7 +78,21 @@
                     });
                 // I making post request here
                 // you gonna send information along with this
+            },
+            loadPrevImage: function() {
+                location.hash = "#" + this.imgData.prevId;
+            },
+            loadNextImage: function() {
+                location.hash = "#" + this.imgData.nextId;
             }
+            // loadPrevImage: function() {
+            //     var self = this;
+            //     // console.log("this.imgData:", this.imgData);
+            //     // console.log("location.hash", location.hash.substring(1));
+            //     self.showModal = true;
+            //     self.imageId = location.hash.substring(1);
+            //     location.hash = this.imgData.prevId;
+            // }
         }
     });
     new Vue({
@@ -107,30 +117,29 @@
             if (self.imageId.length > 0) {
                 self.showModal = true;
             }
-            // loadNextPage(); ///?////
             window.addEventListener("hashchange", function() {
-                console.log("location.hash", location.hash.substring(1));
+                // console.log("location.hash", location.hash.substring(1));
                 self.showModal = true;
                 self.imageId = location.hash.substring(1);
             });
 
             axios.get("/images").then(function(response) {
                 self.images = response.data;
-                console.log("response.data: ", response.data);
+                // console.log("response.data: ", response.data);
             });
         },
         methods: {
             closeModalOnParent: function() {
-                console.log("closeModalOnParent running");
+                // console.log("closeModalOnParent running");
                 this.showModal = false;
                 location.hash = "";
                 // history.pushstate({}, "", "/"); //deletes hash
-                //here you can safely close the modal
+                // here you can safely close the modal
             },
             loadNextPage: function() {
                 var self = this;
                 var lowestId = self.images[self.images.length - 1].id;
-                console.log("SELF.IMAGES", lowestId);
+                // console.log("SELF.IMAGES", lowestId);
                 axios
                     .get("/images/" + lowestId, lowestId)
                     .then(function(response) {
@@ -143,10 +152,8 @@
                         if (currentLowestId == totalLowestId) {
                             self.showMoreButton = false;
                         }
-
-                        //because both of them are arrays. It takes both objects
+                        // because both of them are arrays. It takes both objects
                         // and push them together
-                        // console.log("RESPONSE.data: ", response.data);
                     });
             },
             handleClick: function(e) {
@@ -169,7 +176,6 @@
                         self.description = "";
                         self.username = "";
                         // document.getElementById("file").value = "";
-
                         // document.getElementById("myForm").reset();
                     })
                     .catch(function(err) {
@@ -177,13 +183,8 @@
                     });
             },
             handleChange: function(e) {
-                // console.log("file: ", e.target.files[0]);
                 this.file = e.target.files[0];
             }
         }
     });
 })();
-
-//console log:
-// location.hash.slice(1)
-//return image // IDEA:

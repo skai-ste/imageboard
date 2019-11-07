@@ -9,18 +9,6 @@
     <h1 id="title">Astral Industries</h1>
     <div id="main">
         <div id="main-container">
-            <!-- ////render modal/// -->
-            <image-modal
-                v-if='showModal'
-                :id='imageId'
-                @close='closeModalOnParent'
-            ></image-modal>
-            <!-- if show modal it's true show up, if not - not -->
-            <!-- this planet on right is the user clicked on it's mars, earth or whatever you wrote. On right side must be a property of the Vue instance's data -->
-            <!-- the left refering to the prop - it's planet property we created by writing props -->
-
-            <!-- if your prop ir written in cameCase (so 'planetName') then
-            the left side needs to be written in kebabcase: planet-name -->
             <form class="inputs" id="myForm">
                 <input v-model='title' name='title' placeholder="title" type='text'>
                 <input v-model='description' name='description' placeholder="description" type='text'>
@@ -48,10 +36,14 @@
         <div class="button-container">
             <button v-if='showMoreButton' id="getMoreButton"    @click='loadNextPage'>more</button>
         </div>
-
+        <!-- ///render modal/// -->
+        <image-modal
+            v-if='showModal'
+            :id='imageId'
+            @close='closeModalOnParent'
+        ></image-modal>
 <!-- this div closes main -->
     </div>
-
     <!-- our script tag must be outside of #main!!! -->
     <script id='image-modal-template' type='text/x-template'>
         <!-- all of the HTML for our component will be put in this div -->
@@ -67,15 +59,17 @@
                     <input id="username-input" v-model='form.username' name='username' placeholder="username" type='text'>
                     <input id="comment-input" v-model='form.comment' name='comment' placeholder="comment" type='text'>
                     <button @click='addComment'>comment</button>
-                    <div class="comments-space" v-for="comment in comments">
-                        <p id="username-comment">{{comment.username}}</p>
-                        <p id="comment-comment">{{comment.comment}}</p>
+                    <div class="comments-container">
+                        <div class="comments-space" v-for="comment in comments">
+                            <p id="username-comment">{{comment.username}}</p>
+                            <p id="comment-comment">{{comment.comment}}</p>
+                        </div>
                     </div>
                 </div>
-
-                <!-- <h1>My templateeeee</h1> -->
-                <!-- <h1 @click='myClick'>{{header}}</h1> -->
-                <!-- <h1 @click='myClick'></h1> -->
+                <div class="navigators">
+                    <p class="prev-button" @click="loadPrevImage" v-if="imgData.prevId">prev</p>
+                    <p class="next-button" @click="loadNextImage" v-if="imgData.nextId">next</p>
+                </div>
             </div>
         </div>
     </script>
@@ -85,18 +79,3 @@
     <script src="/js/script.js"></script>
 </body>
 </html>
-
-
-<!-- <div id="main"> -->
-    <!-- <h2 @click="myFunction">The best cohort is: {{ name }}</h2>
-    <h2 v-on:click="myFunction">Maths! 2 * 2 = {{ 2 * 2 }}</h2> -->
-    <!-- <h2>Capitalise! {{"sassafras".toUpperCase()}}</h2> -->
-    <!-- <h2 v-bind:class="myClassName">Capitalise! {{name.toUpperCase()}}</h2>
-    <h3 v-if="seen" :class="myClassName">Can you see me?</h3>
-    <ul>
-        <li v-for="planet in planets" @click="myFunction(planet.name)">{{planet.name}} , {{planet.color}}</li>
-    </ul> -->
-<!-- </div>
-<div v-for='planet in planets'>
-    <h1 @click='showModalMethod(planet.name)'>{{ planet.name }}</h1>
-</div>
