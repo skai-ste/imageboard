@@ -16,6 +16,8 @@ Vue.js app where users can upload images to a gallery and add comments.
 
 -   'More' button to see more images
 
+-   "Previous" and "Next" buttons on the image modal to see previous/next images
+
 # Technologies
 
 Vue.js, CSS, HTML, Node.js, Express, PostgreSQL, AWS S3
