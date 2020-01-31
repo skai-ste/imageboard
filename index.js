@@ -8,8 +8,8 @@ const {
     getCommentsData,
     getMoreImages
 } = require("./utils/db");
-const s3 = require("./s3");
-const config = require("./config");
+const s3 = require("./utils/s3");
+const config = require("./utils/config");
 
 ///////////// FILE UPLOAD BOILERPLATE ///////////
 const multer = require("multer");
